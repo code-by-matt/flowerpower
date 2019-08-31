@@ -8,4 +8,4 @@ import numpy
 X = numpy.loadtxt("irix.data", delimiter=",", usecols=(0,1,2,3))
 numpy.save("features", X)
 ```
-It has yet to be decided how to form the class array.
+It has yet to be decided how to form the class array...
