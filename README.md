@@ -4,7 +4,7 @@ It's the "hello world" of machine learning: the iris data set! Here I attempt to
 
 ## The Plan
 
-I wanna use linear regression with no regularization, for the sake of simplicity. [Andrew Ng](https://coursera.org/learn/machine-learning) taught me how to manually choose a learning rate and a regularization level, but it seems that scikit-learn can take care of all of that for me! Training a classifier only takes three lines.
+I wanna use linear regression with no regularization, for the sake of simplicity. [Andrew Ng](https://coursera.org/learn/machine-learning) taught me how to implement gradient descent and manually choose a learning rate and a regularization level, but apparently that was all baby stuff. Training a classifier with scikit-learn only takes three lines.
 
 ```python
 from sklearn.linear_model import LogisticRegression
