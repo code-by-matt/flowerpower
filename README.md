@@ -39,4 +39,8 @@ from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
 ```
 
-I want to experiment with different regularization strengths, which means...
+## Cross-Validation
+
+We want to pick a good regularization strength. Andrew told us that the way to do this is to run our classifier with a variety of strengths and then check which one is the best. But again, we can't check the performance of a particular strength by using the same data we trained with.
+
+We'll go with Andrew's favorite half-powers of ten sequence: 0.1, 0.3, 10, 30.
