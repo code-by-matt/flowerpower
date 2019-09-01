@@ -18,12 +18,16 @@ Since the hard work of implementing logistic regression had been done for us, al
 
 ## Reading in Data
 
-I grabbed the `iris.data` file from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/index.php), where it happens to be the site's most popular data set. (I later realized that scikit-learn comes pre-packaged with the iris data set, but this is still a good exercise in data-wrangling for me.) The first thing to do was to package and save the data into two big numpy arrays. I stored the 150-by-4 feature array in `features.npy`, and it's simply the first four columns of `iris.data`.
+I grabbed the `iris.data` file from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/index.php), where it happens to be the site's most popular data set. (I later realized that scikit-learn comes pre-packaged with the iris data set, but this is still a good exercise in data-wrangling for me.) The first thing to do was to package and save the data into two big numpy arrays. I stored the first four columns of the data in a 150-by-4 array called `features.npy`, and I stored the fifth column in a 150-by-1 array called `classes.npy`.
 
 ```python
 import numpy
 X = numpy.loadtxt("iris.data", delimiter=",", usecols=(0,1,2,3))
+y = numpy.loadtxt("iris.data", delimiter=",", usecols=(4), dtype="str")
 numpy.save("features", X)
+numpy.save("classes", y)
 ```
 
-It has yet to be decided how to form the class array...
+The UCI file stored the iris classes as strings (full species names), which is why I needed `dtype="str"`. 
+
+## Partitioning the Data
