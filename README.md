@@ -32,15 +32,22 @@ The UCI file stored the iris classes as strings (full species names), which is w
 
 ## Partitioning the Data
 
-We have 150 samples to work with, a portion of which we need to NOT use in training our classifier, but instead use to test our classifier after it's been trained. This is common practice, because we want to see how well our classifier captures the underlying behavior of irises at large, not the idosyncracies of data we trained on. If we trained and tested on the same data, there would be no way to tell if our accuracy is derived from the idosyncracies or correct underlying behavior. The `train_test_split` function gives us a super easy way to randomly split up our data into a training set and a test set using any proportion we want. In this case, we save 30% of our data for testing.
+We have 150 samples to work with, a portion of which we need to NOT use in training our classifier, but instead use to test our classifier after it's been trained. This is common practice, because we want to see how well our classifier captures the underlying behavior of irises at large, not the idosyncracies of data we trained on. If we trained and tested on the same data, there would be no way to tell if our accuracy is derived from the idosyncracies or correct underlying behavior. The `train_test_split` function gives us a super easy way to randomly split up our data into a training set and a test set using any proportion we want.
 
 ```python
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
 ```
 
+In this case, we save 30% of our data for testing.
+
 ## Cross-Validation
 
-We want to pick a good regularization strength. Andrew told us that the way to do this is to run our classifier with a variety of strengths and then check which one is the best. But again, we can't check the performance of a particular strength by using the same data we trained with.
+We want to pick a good regularization strength. Andrew taught us that the way to do this is to run our classifier with a variety of strengths and then check which one is the best. But again, we can't check the performance of a particular strength by using the same data we trained with. The way this was dealt with in the course was by making a cross-validation set, to be used only for comparing different regularization strengths. The obvious drawback of splitting up the data into three parts (training, cross-validation, testing) is that you have even less data to train with. A better way is to use scikit-learn's `cross_val_score`, which does a fancy thing called *k-fold validation*.
 
-We'll go with Andrew's favorite half-powers of ten sequence: 0.1, 0.3, 10, 30.
+```python
+from sklearn.model_selection import cross_val_score
+scores = cross_val_score(classifier, X_train, y_train, cv=5)
+```
+
+We'll go with Andrew's favorite half-powers-of-ten sequence: 0.1, 0.3, 10, 30.
