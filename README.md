@@ -31,3 +31,12 @@ numpy.save("classes", y)
 The UCI file stored the iris classes as strings (full species names), which is why I needed `dtype="str"`. 
 
 ## Partitioning the Data
+
+We have 150 samples to work with, a portion of which we need to NOT use in training our classifier, but instead use to test our classifier after it's been trained. This is common practice, because we want to see how well our classifier captures the underlying behavior of irises at large, not the idosyncracies of data we trained on. If we trained and tested on the same data, there would be no way to tell if our accuracy is derived from the idosyncracies or correct underlying behavior. The `train_test_split` function gives us a super easy way to randomly split up our data into a training set and a test set using any proportion we want. In this case, we save 30% of our data for testing.
+
+```python
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
+```
+
+I want to experiment with different regularization strengths, which means...
