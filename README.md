@@ -8,11 +8,11 @@ It's the "hello world" of machine learning: the iris data set! Here I attempt to
 
 ```python
 from sklearn.linear_model import LogisticRegression
-classifier = LogisticRegression(penalty="l2", C="1.0", solver="lbfgs", multi_class="ovr")
+classifier = LogisticRegression(penalty="l2", C=1.0, solver="lbfgs", multi_class="ovr")
 classifier.fit(X, y)
 ```
 
-The `LogisticRegression` constructor has many optional arguments: `penalty="l2"` specifies a certain regularization scheme (the only scheme I'm familiar with lol), `C="1.0"` sets the inverse of regularization strength (why inverse? nobody knows), `solver="lbfgs"` means that the classifier will use the [limited-memory Broyden-Fletcher-Goldfarb-Shanno algorithm](https://en.wikipedia.org/wiki/Limited-memory_BFGS), which I guess is some hella fancy version of gradient descent, and `multi_class="ovr"` means one-versus-rest.
+The `LogisticRegression` constructor has many optional arguments: `penalty="l2"` specifies a certain regularization scheme (the only scheme I'm familiar with lol), `C=1.0` sets the inverse of regularization strength (why inverse? nobody knows), `solver="lbfgs"` means that the classifier will use the [limited-memory Broyden-Fletcher-Goldfarb-Shanno algorithm](https://en.wikipedia.org/wiki/Limited-memory_BFGS), which I guess is some hella fancy version of gradient descent, and `multi_class="ovr"` means one-versus-rest.
 
 Since the hard work of implementing logistic regression had been done for us, all we have to worry about is what comes before and after. We start with what comes before, which is prepping our data.
 
