@@ -14,7 +14,6 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
 results = []
 for r in sys.argv:
     classifier = LogisticRegression(penalty="l2", C=r, solver="lbfgs", multi_class="ovr")
-    classifier.fit(X_train, y_train)
-    scores = cross_val_score(classifier, X_test, y_test, cv=5)
+    scores = cross_val_score(classifier, X_train, y_train, cv=5)
     results.append("%0.3f (+/- %0.3f)" % (scores.mean(), scores.std() * 2))
 print(results)
