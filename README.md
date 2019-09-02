@@ -43,11 +43,11 @@ In this case, we save 30% of our data for testing.
 
 ## Cross-Validation
 
-We want to pick a good regularization strength. Andrew taught us that the way to do this is to run our classifier with a variety of strengths and then check which one is the best. But again, we can't check the performance of a particular strength by using the same data we trained with. The way this was dealt with in the course was by making a cross-validation set, to be used only for comparing different regularization strengths. The obvious drawback of splitting up the data into three parts (training, cross-validation, testing) is that you have even less data to train with. A better way is to use scikit-learn's `cross_val_score`, which does a fancy thing called *k-fold validation*.
+We want to pick a good regularization strength. Andrew taught us that the way to do this is to run our classifier with a variety of strengths and then check which one is the best. But again, we can't check the performance of a particular strength by using the same data we trained with. The way this was dealt with in the course was by making a cross-validation set, to be used only for comparing different regularization strengths. The obvious drawback of splitting up the data into three parts (training, cross-validation, testing) is that you have even less data to train with. A better way is to use scikit-learn's `cross_val_score`, which does a fancy thing called [k-fold validation](https://scikit-learn.org/stable/modules/cross_validation.html).
 
 ```python
 from sklearn.model_selection import cross_val_score
 scores = cross_val_score(classifier, X_train, y_train, cv=5)
 ```
 
-We'll go with Andrew's favorite half-powers-of-ten sequence: 0.1, 0.3, 10, 30.
+The `scores` object will be an array of floats (in our case, with length 5) between 0 and 1, with 1 meaning 100% accurate (the exact meaning of "accurate" depends on a variety of factors, see the above link).
