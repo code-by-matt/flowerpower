@@ -50,4 +50,4 @@ from sklearn.model_selection import cross_val_score
 scores = cross_val_score(classifier, X_test, y_test, cv=5)
 ```
 
-The `scores` object will be an array of floats (in our case, with length 5) between 0 and 1, with 1 meaning 100% accurate (the exact meaning of "accurate" depends on a variety of factors, see the above link).
+By setting `cv=5`, we tell the computer to train our classifier five times on five different training/cross-validation splits, or "folds". The accuracy acheived on each fold is recorded in `scores` as floats between 0 and 1, with 1 meaning 100% accurate. The way the folds are determined and the exact meaning of "accurate" depend on a variety of factors; see the above link.
