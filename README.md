@@ -51,3 +51,26 @@ interval = "%0.3f (+/- %0.3f)" % (scores.mean(), scores.std() * 2)
 ```
 
 By setting `cv=5`, we tell the computer to train our classifier five times on five different training/cross-validation splits, or "folds". The accuracy acheived on each fold is recorded in `scores` as floats between 0 and 1, with 1 meaning 100% accurate. (The way the folds are determined and the exact meaning of "accurate" depend on a variety of factors; see the above link.) From `scores` we can easily construct a 95% confidence interval for accuracy.
+
+## Training Time!
+
+I made the `flowerpower.py` script to bring together everything that I've talked about.
+
+```
+$ python flowerpower.py 0.01 100 1000000
+
+Cross-Validation Scores:
+1 0.731 (+/- 0.117)
+2 0.942 (+/- 0.042)
+3 0.952 (+/- 0.063)
+
+Enter a row number: 2
+Final Score: 0.978
+```
+
+It takes any number of `C` values as command-line arguments and computes their cross-validation scores. Then it calculates a final score using a `C` value that you choose, in this case the second one we input, or `C=100`.
+
+## What Does It Mean??
+
+The above results tell us that our classifier performs really well, so long as `C` isn't too small. This means that our data fits a simple pattern really well and is not very susceptible to overfitting. The script then 
+
