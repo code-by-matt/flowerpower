@@ -18,7 +18,7 @@ for i in range(1, len(sys.argv)):
     print(str(i) + " %0.3f (+/- %0.3f)" % (scores.mean(), scores.std() * 2))
 
 # Calculate final performance of user-chosen regularization strength.
-choice = int(input("enter a row number: "))
+choice = int(input("Enter a row number: "))
 classifier = LogisticRegression(penalty="l2", C=float(sys.argv[choice]), solver="lbfgs", multi_class="ovr")
 classifier.fit(X_train, y_train)
 print("\nFinal Score: %0.3f" % (classifier.score(X_test, y_test)))
