@@ -21,4 +21,4 @@ for i in range(1, len(sys.argv)):
 choice = int(input("\nEnter a row number: "))
 classifier = LogisticRegression(penalty="l2", C=float(sys.argv[choice]), solver="lbfgs", multi_class="ovr")
 classifier.fit(X_train, y_train)
-print("Final Score: %0.3f" % (classifier.score(X_test, y_test)))
+print("Final Score: %0.3f\n" % (classifier.score(X_test, y_test)))
