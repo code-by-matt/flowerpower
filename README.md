@@ -1,8 +1,6 @@
 # Flower Power!
 
-I recently completed Andrew Ng's famous [machine learning course](https://coursera.org/learn/machine-learning). I gained a fundamental understanding of a variety of ML topics, but I left the course thinking, "Wait, so how do people actually use these things?"
-
-It's the "hello world" of machine learning: the iris data set! Here I attempt to use scikit-learn to build a classifier that predicts the species of an iris given four of its features. I document the whole process below.
+I recently finished Andrew Ng's famous [machine learning course](https://coursera.org/learn/machine-learning). I gained a fundamental understanding of a variety of ML topics, but I left the course thinking, "Wait, so how do people actually use these things?" To answer this question, I decided to look at [Fisher's iris data set](https://en.wikipedia.org/wiki/Iris_flower_data_set), one of the most popular data sets out there. It's so popular, it tops Wikipedia's [list of "classic" data sets](https://en.wikipedia.org/wiki/Data_set#Classic_data_sets), which I now know is a thing.
 
 ## The Plan
 
