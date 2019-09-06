@@ -1,6 +1,6 @@
 # Flower Power!
 
-I recently finished Andrew Ng's famous [machine learning course](https://coursera.org/learn/machine-learning). I gained a fundamental understanding of a variety of ML topics, but I left the course thinking, "Wait, so how do people actually *use* these things?" To answer this question, I decided to try my hand at running logistic regression on the ever-so-popular[^1] [iris data set](https://en.wikipedia.org/wiki/Iris_flower_data_set) using scikit-learn, a free Python machine learning library. Read on to find out what I learned!
+I recently finished Andrew Ng's famous [machine learning course](https://coursera.org/learn/machine-learning). I gained a fundamental understanding of a variety of ML topics, but I left the course thinking, "Wait, so how do people actually *use* these things?" To answer this question, I decided to try my hand at running logistic regression on the ever-so-popular<sup>[1]</sup> [iris data set](https://en.wikipedia.org/wiki/Iris_flower_data_set) using scikit-learn, a free Python machine learning library. Read on to find out what I learned!
 
 ## Exploring the Docs
 
@@ -23,7 +23,7 @@ I implemented Andrew taught me how to train a logistic regression classifier in 
 
 ## Prepping the Data
 
-I grabbed the `iris.data` file from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/index.php).[^2] Each of the 150 rows of the data set consists of four flower features (sepal length, sepal width,petal length, petal width) and a class (one of three iris species).
+I grabbed the `iris.data` file from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/index.php).<sup>[2]</sup> Each of the 150 rows of the data set consists of four flower features (sepal length, sepal width,petal length, petal width) and a class (one of three iris species).
 
 ```
 5.1,3.5,1.4,0.2,Iris-setosa
@@ -95,8 +95,10 @@ It takes any number of `C` values as command-line arguments and computes their c
 
 ## What Does It Mean??
 
-The above results tell us that our classifier performs really well, so long as `C` isn't too small. This means that our data fits a simple pattern really well and is not very susceptible to overfitting. The script then 
+The above results tell us that our classifier performs really well, so long as `C` isn't too small. This means that our data fits a simple pattern really well and is not very susceptible to overfitting. The script then
 
-[^1]: It's so popular, it tops Wikipedia's [list of classic data sets](https://en.wikipedia.org/wiki/Data_set#Classic_data_sets)–because of course such a thing exists.
+---
 
-[^2]: I later realized that scikit-learn comes pre-packaged with the iris data set, but this is still a good exercise in data-wrangling for me.
+1. It's so popular, it tops Wikipedia's [list of classic data sets](https://en.wikipedia.org/wiki/Data_set#Classic_data_sets)–because of course such a thing exists.
+
+2. I later realized that scikit-learn comes pre-packaged with the iris data set, but this was still a good exercise in data-wrangling for me.
