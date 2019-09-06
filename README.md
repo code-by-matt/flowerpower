@@ -1,10 +1,51 @@
 # Flower Power!
 
-I recently finished Andrew Ng's famous [machine learning course](https://coursera.org/learn/machine-learning). I gained a fundamental understanding of a variety of ML topics, but I left the course thinking, "Wait, so how do people actually use these things?" To answer this question, I decided to look at [Fisher's iris data set](https://en.wikipedia.org/wiki/Iris_flower_data_set), one of the most popular data sets out there. It's so popular, it tops Wikipedia's [list of "classic" data sets](https://en.wikipedia.org/wiki/Data_set#Classic_data_sets), which I now know is a thing.
+I recently finished Andrew Ng's famous [machine learning course](https://coursera.org/learn/machine-learning). I gained a fundamental understanding of a variety of ML topics, but I left the course thinking, "Wait, so how do people actually *use* these things?" To answer this question, I decided to try my hand at running logistic regression on the ever-so-popular[^1] [iris data set](https://en.wikipedia.org/wiki/Iris_flower_data_set) using scikit-learn, a free Python machine learning library. Read on to find out what I learned!
 
-## The Plan
+## Exploring the Docs
 
-[Andrew Ng](https://coursera.org/learn/machine-learning) taught me how to train a logistic regression classifier in Octave by writing my own implementation of gradient descent and manually choose a learning rate and a regularization parameter, but apparently all that was baby stuff. Real ML engineers train classifiers using ready-made solutions like this!
+I initially thought that this project was going to be pretty similar to the assignments in Andrew's course where I implemented various machine learning algorithms in Octave. I would ponder the algorithm in an abstract sense, then try to efficiently translate it into code. Making sure my implementation worked properly was a slow and fiddly process, riddled with missing semicolons and botched matrix operations. You really had to know what your code was doing. Turns out, with scikit-learn, you don't need to know what your code is doing at all!
+
+Just kidding (kinda). Going through that course was definitely a valuable experience, but a quick tour of the scikit-learn documentation made me realize that *all the hard stuff is already done for you*. 
+
+I implemented Andrew taught me how to train a logistic regression classifier in Octave by writing my own implementation of gradient descent and manually choose a learning rate and a regularization parameter.
+
+## Prepping the Data
+
+I grabbed the `iris.data` file from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/index.php).[^2] Each of the 150 rows of the data set consists of four flower features (sepal length, sepal width,petal length, petal width) and a class (one of three iris species).
+
+```
+5.1,3.5,1.4,0.2,Iris-setosa
+4.9,3.0,1.4,0.2,Iris-setosa
+...
+5.5,2.6,4.4,1.2,Iris-versicolor
+6.1,3.0,4.6,1.4,Iris-versicolor
+...
+6.7,2.5,5.8,1.8,Iris-virginica
+7.2,3.6,6.1,2.5,Iris-virginica
+...
+```
+
+First I packaged up the data into two big numpy arrays so that it's compatible with scikit-learn. I stored the first four columns of the data in a 150-by-4 array called `features.npy`, and I stored the fifth column in a 150-by-1 array called `classes.npy`.
+
+```python
+import numpy
+X = numpy.loadtxt("iris.data", delimiter=",", usecols=(0,1,2,3))
+y = numpy.loadtxt("iris.data", delimiter=",", usecols=(4), dtype="str")
+numpy.save("features", X)
+numpy.save("classes", y)
+```
+
+The next thing to do was  to NOT use in training our classifier, but instead use to test our classifier after it's been trained. This is common practice, because we want to see how well our classifier captures the underlying behavior of irises at large, not the idosyncracies of data we trained on. If we trained and tested on the same data, there would be no way to tell if our accuracy is derived from the idosyncracies or correct underlying behavior. The `train_test_split` function gives us a super easy way to randomly split up our data into a training set and a test set using any proportion we want.
+
+```python
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
+```
+
+In this case, we save 30% of our data for testing.
+
+The plan was to train a classifier so that it can predict the species of a flower given its features.
 
 ```python
 from sklearn.linear_model import LogisticRegression
@@ -15,30 +56,7 @@ The `LogisticRegression` constructor has many optional arguments: `penalty="l2"`
 
 Since the hard work of implementing logistic regression had been done for us, all we have to worry about is what comes before and after. We start with what comes before, which is prepping our data.
 
-## Reading in Data
-
-I grabbed the `iris.data` file from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/index.php), where it happens to be the site's most popular data set. (I later realized that scikit-learn comes pre-packaged with the iris data set, but this is still a good exercise in data-wrangling for me.) The first thing to do was to package and save the data into two big numpy arrays. I stored the first four columns of the data in a 150-by-4 array called `features.npy`, and I stored the fifth column in a 150-by-1 array called `classes.npy`.
-
-```python
-import numpy
-X = numpy.loadtxt("iris.data", delimiter=",", usecols=(0,1,2,3))
-y = numpy.loadtxt("iris.data", delimiter=",", usecols=(4), dtype="str")
-numpy.save("features", X)
-numpy.save("classes", y)
-```
-
-The UCI file stored the iris classes as strings (full species names), which is why I needed `dtype="str"`. 
-
 ## Partitioning the Data
-
-We have 150 samples to work with, a portion of which we need to NOT use in training our classifier, but instead use to test our classifier after it's been trained. This is common practice, because we want to see how well our classifier captures the underlying behavior of irises at large, not the idosyncracies of data we trained on. If we trained and tested on the same data, there would be no way to tell if our accuracy is derived from the idosyncracies or correct underlying behavior. The `train_test_split` function gives us a super easy way to randomly split up our data into a training set and a test set using any proportion we want.
-
-```python
-from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
-```
-
-In this case, we save 30% of our data for testing.
 
 ## Cross-Validation
 
@@ -74,3 +92,6 @@ It takes any number of `C` values as command-line arguments and computes their c
 
 The above results tell us that our classifier performs really well, so long as `C` isn't too small. This means that our data fits a simple pattern really well and is not very susceptible to overfitting. The script then 
 
+[^1]: It's so popular, it tops Wikipedia's [list of classic data sets](https://en.wikipedia.org/wiki/Data_set#Classic_data_sets)–because of course such a thing exists.
+
+[^2]: I later realized that scikit-learn comes pre-packaged with the iris data set, but this is still a good exercise in data-wrangling for me.
