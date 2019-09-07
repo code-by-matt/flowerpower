@@ -19,7 +19,7 @@ classifier = LogisticRegression(penalty="l2", C=1.0, solver="lbfgs", multi_class
 
 The `LogisticRegression` constructor has many optional arguments: `penalty="l2"` specifies a certain regularization scheme,<sup>[2]</sup> `C=1.0` sets the inverse of regularization strength,<sup>[3]</sup> `solver="lbfgs"` means that the classifier will use the [limited-memory Broyden-Fletcher-Goldfarb-Shanno algorithm](https://en.wikipedia.org/wiki/Limited-memory_BFGS), which I guess is some hella fancy version of gradient descent, and `multi_class="ovr"` means one-versus-rest. (Many other arguments were available, but I decided not to mess with them.) These two lines are all you need to create a fully-functional classifier. All the fiddly implementation details have already been figured out and hidden away!
 
-It became clear that I didn't need to reinvent the wheel. I simply needed to choose a few of my favorites from a massive library of ready-made wheels.
+It became clear that I didn't need to reinvent the wheel–I simply needed to choose a few of my favorites from a massive library of ready-made wheels.
 
 ## Prepping the Data
 
