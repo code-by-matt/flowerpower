@@ -21,9 +21,9 @@ The `LogisticRegression` constructor has tons of optional arguments, of which I 
 
 It became clear that I didn't need to reinvent the wheel–I simply needed to choose a few from a massive library of ready-made wheels.
 
-## Prepping the Data
+## Reading in the Data
 
-I grabbed the `iris.data` file from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/index.php).<sup>[4]</sup> Each of the 150 rows of the data set consists of four flower features (sepal length, sepal width,petal length, petal width) and a class (one of three iris species).
+Before the wheel shopping could begin, however, I needed to gather my data and make it compatible with scikit-learn. I started with the `iris.data` file from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/index.php). The file contained 150 rows of data, where each row consisted of four flower features (sepal length, sepal width,petal length, petal width) and a class (one of three iris species).
 
 ```
 5.1,3.5,1.4,0.2,Iris-setosa
@@ -37,7 +37,7 @@ I grabbed the `iris.data` file from the [UCI Machine Learning Repository](https:
 ...
 ```
 
-First I packaged up the data into two big numpy arrays so that it's compatible with scikit-learn. I stored the first four columns of the data in a 150-by-4 array called `features.npy`, and I stored the fifth column in a 150-by-1 array called `classes.npy`.
+I saved the first four columns of the data in a 150-by-4 numpy array called `features.npy`, and I stored the fifth column in a 150-by-1 numpy array called `classes.npy`.
 
 ```python
 import numpy
@@ -46,6 +46,17 @@ y = numpy.loadtxt("iris.data", delimiter=",", usecols=(4), dtype="str")
 numpy.save("features", X)
 numpy.save("classes", y)
 ```
+
+Then, while skimming the docs, I discovered that the iris data set is *literally built into scikit-learn*.
+
+```python
+from sklearn import datasets
+iris = datasets.load_iris()
+```
+
+Sigh. Moving on then.
+
+## Training Methodology
 
 The next thing to do was  to NOT use in training our classifier, but instead use to test our classifier after it's been trained. This is common practice, because we want to see how well our classifier captures the underlying behavior of irises at large, not the idosyncracies of data we trained on. If we trained and tested on the same data, there would be no way to tell if our accuracy is derived from the idosyncracies or correct underlying behavior. The `train_test_split` function gives us a super easy way to randomly split up our data into a training set and a test set using any proportion we want.
 
@@ -60,10 +71,6 @@ The plan was to train a classifier so that it can predict the species of a flowe
 
 
 Since the hard work of implementing logistic regression had been done for us, all we have to worry about is what comes before and after. We start with what comes before, which is prepping our data.
-
-## Partitioning the Data
-
-## Cross-Validation
 
 We want to pick a good regularization strength. Andrew taught us that the way to do this is to run our classifier with a variety of strengths and then check which one is the best. But again, we can't check the performance of a particular strength by using the same data we trained with. The way this was dealt with in the course was by making a cross-validation set, to be used only for comparing different regularization strengths. The obvious drawback of splitting up the data into three parts (training, cross-validation, testing) is that you have even less data to train with. A better way is to use scikit-learn's `cross_val_score`, which does a fancy thing called [k-fold validation](https://scikit-learn.org/stable/modules/cross_validation.html).
 
@@ -104,5 +111,3 @@ The above results tell us that our classifier performs really well, so long as `
 2. L2 regularization is what I saw in Andrew's course, so I chose it out of familiarity. The precise difference in behavior between L1 regularization and L2 regularization remains a mystery to me.
 
 3. Why inverse? Nobody knows.
-
-4. I later realized that scikit-learn comes pre-packaged with the iris data set... but this was still a good exercise in data-wrangling for me!
