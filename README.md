@@ -17,7 +17,7 @@ from sklearn.linear_model import LogisticRegression
 classifier = LogisticRegression(penalty="l2", C=1.0, solver="lbfgs", multi_class="ovr")
 ```
 
-The `LogisticRegression` constructor has many optional arguments: `penalty="l2"` specifies a certain regularization scheme (the only scheme I'm familiar with lol), `C=1.0` sets the inverse of regularization strength (why inverse? nobody knows), `solver="lbfgs"` means that the classifier will use the [limited-memory Broyden-Fletcher-Goldfarb-Shanno algorithm](https://en.wikipedia.org/wiki/Limited-memory_BFGS), which I guess is some hella fancy version of gradient descent, and `multi_class="ovr"` means one-versus-rest.
+The `LogisticRegression` constructor has many optional arguments: `penalty="l2"` specifies a certain regularization scheme,<sup>[3]</sup> `C=1.0` sets the inverse of regularization strength,<sup>[4]</sup> `solver="lbfgs"` means that the classifier will use the [limited-memory Broyden-Fletcher-Goldfarb-Shanno algorithm](https://en.wikipedia.org/wiki/Limited-memory_BFGS), which I guess is some hella fancy version of gradient descent, and `multi_class="ovr"` means one-versus-rest.
 
 I implemented Andrew taught me how to train a logistic regression classifier in Octave by writing my own implementation of gradient descent and manually choose a learning rate and a regularization parameter.
 
@@ -102,3 +102,7 @@ The above results tell us that our classifier performs really well, so long as `
 1. It's so popular, it tops Wikipedia's [list of classic data sets](https://en.wikipedia.org/wiki/Data_set#Classic_data_sets)–because of course such a thing exists.
 
 2. I later realized that scikit-learn comes pre-packaged with the iris data set, but this was still a good exercise in data-wrangling for me.
+
+3. L2 regularization is what I saw in Andrew's course, so I chose it out of familiarity. The precise difference in behavior between L1 regularization and L2 regularization remains a mystery to me.
+
+4. Why inverse? Nobody knows.
