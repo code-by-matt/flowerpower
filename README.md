@@ -6,20 +6,20 @@ I recently finished Andrew Ng's famous [machine learning course](https://courser
 
 I initially thought that this project was going to be pretty similar to the assignments in Andrew's course where I implemented various machine learning algorithms in Octave. I would ponder the algorithm in an abstract sense, then try to efficiently translate it into code. Making sure my implementation worked properly was a slow and fiddly process, riddled with missing semicolons and botched matrix operations. You really had to know what your code was doing. Turns out, with scikit-learn, you don't need to know what you're doing at all!
 
-Just kidding (kinda). Going through that course was definitely a valuable experience, but a quick tour of the scikit-learn documentation made me realize that *all the hard stuff is already done for you*. Example: My work for Andrew's one-vs-all logistic regression assignment was a jank collection of scripts written in TextEdit because I was too lazy to find a better editor.
+Just kidding (kinda). Going through that course was definitely a valuable experience, but a quick tour of the scikit-learn documentation made me realize that *all the hard stuff was already done for me*. Example: My work for Andrew's one-vs-all logistic regression assignment was a jank collection of scripts written in TextEdit because I was too lazy to find a better editor.
 
 ![My work for Andrew Ng's logistic regression assignment.](jankness.png)
 
-To do the same thing with scikit-learn, all you need is two lines!
+I did the same thing with scikit-learn in two lines.
 
 ```python
 from sklearn.linear_model import LogisticRegression
 classifier = LogisticRegression(penalty="l2", C=1.0, solver="lbfgs", multi_class="ovr")
 ```
 
-The `LogisticRegression` constructor has many optional arguments: `penalty="l2"` specifies a certain regularization scheme,<sup>[2]</sup> `C=1.0` sets the inverse of regularization strength,<sup>[3]</sup> `solver="lbfgs"` means that the classifier will use the [limited-memory Broyden-Fletcher-Goldfarb-Shanno algorithm](https://en.wikipedia.org/wiki/Limited-memory_BFGS), which I guess is some hella fancy version of gradient descent, and `multi_class="ovr"` means one-versus-rest. (Many other arguments were available, but I decided not to mess with them.) These two lines are all you need to create a fully-functional classifier. All the fiddly implementation details have already been figured out and hidden away!
+The `LogisticRegression` constructor has tons of optional arguments, of which I chose four: `penalty="l2"` specified a certain regularization scheme,<sup>[2]</sup> `C=1.0` set the inverse of regularization strength,<sup>[3]</sup> `solver="lbfgs"` meant that the classifier used the [limited-memory Broyden-Fletcher-Goldfarb-Shanno algorithm](https://en.wikipedia.org/wiki/Limited-memory_BFGS), which seems to be some hella fancy version of gradient descent, and `multi_class="ovr"` meant one-versus-rest. These two lines were all I needed to create a fully-functional logistic regression classifier. All the fiddly implementation details had already been figured out and hidden away!
 
-It became clear that I didn't need to reinvent the wheel–I simply needed to choose a few of my favorites from a massive library of ready-made wheels.
+It became clear that I didn't need to reinvent the wheel–I simply needed to choose a few from a massive library of ready-made wheels.
 
 ## Prepping the Data
 
