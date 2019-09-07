@@ -17,13 +17,13 @@ from sklearn.linear_model import LogisticRegression
 classifier = LogisticRegression(penalty="l2", C=1.0, solver="lbfgs", multi_class="ovr")
 ```
 
-The `LogisticRegression` constructor has many optional arguments: `penalty="l2"` specifies a certain regularization scheme,<sup>[3]</sup> `C=1.0` sets the inverse of regularization strength,<sup>[4]</sup> `solver="lbfgs"` means that the classifier will use the [limited-memory Broyden-Fletcher-Goldfarb-Shanno algorithm](https://en.wikipedia.org/wiki/Limited-memory_BFGS), which I guess is some hella fancy version of gradient descent, and `multi_class="ovr"` means one-versus-rest. (Many other arguments were available, but I decided not to mess with them.) These two lines are all you need to create a fully-functional classifier. All the fiddly implementation details have already been figured out and hidden away!
+The `LogisticRegression` constructor has many optional arguments: `penalty="l2"` specifies a certain regularization scheme,<sup>[2]</sup> `C=1.0` sets the inverse of regularization strength,<sup>[3]</sup> `solver="lbfgs"` means that the classifier will use the [limited-memory Broyden-Fletcher-Goldfarb-Shanno algorithm](https://en.wikipedia.org/wiki/Limited-memory_BFGS), which I guess is some hella fancy version of gradient descent, and `multi_class="ovr"` means one-versus-rest. (Many other arguments were available, but I decided not to mess with them.) These two lines are all you need to create a fully-functional classifier. All the fiddly implementation details have already been figured out and hidden away!
 
 It became clear that I didn't need to reinvent the wheel. I simply needed to choose a few of my favorites from a massive library of ready-made wheels.
 
 ## Prepping the Data
 
-I grabbed the `iris.data` file from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/index.php).<sup>[2]</sup> Each of the 150 rows of the data set consists of four flower features (sepal length, sepal width,petal length, petal width) and a class (one of three iris species).
+I grabbed the `iris.data` file from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/index.php).<sup>[4]</sup> Each of the 150 rows of the data set consists of four flower features (sepal length, sepal width,petal length, petal width) and a class (one of three iris species).
 
 ```
 5.1,3.5,1.4,0.2,Iris-setosa
@@ -101,8 +101,8 @@ The above results tell us that our classifier performs really well, so long as `
 
 1. It's so popular, it tops Wikipedia's [list of classic data sets](https://en.wikipedia.org/wiki/Data_set#Classic_data_sets)–because of course such a thing exists.
 
-2. I later realized that scikit-learn comes pre-packaged with the iris data set, but this was still a good exercise in data-wrangling for me.
+2. L2 regularization is what I saw in Andrew's course, so I chose it out of familiarity. The precise difference in behavior between L1 regularization and L2 regularization remains a mystery to me.
 
-3. L2 regularization is what I saw in Andrew's course, so I chose it out of familiarity. The precise difference in behavior between L1 regularization and L2 regularization remains a mystery to me.
+3. Why inverse? Nobody knows.
 
-4. Why inverse? Nobody knows.
+4. I later realized that scikit-learn comes pre-packaged with the iris data set, but this was still a good exercise in data-wrangling for me.
