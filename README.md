@@ -105,4 +105,4 @@ The above results tell us that our classifier performs really well, so long as `
 
 3. Why inverse? Nobody knows.
 
-4. I later realized that scikit-learn comes pre-packaged with the iris data set, but this was still a good exercise in data-wrangling for me.
+4. I later realized that scikit-learn comes pre-packaged with the iris data set... but this was still a good exercise in data-wrangling for me!
