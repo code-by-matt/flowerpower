@@ -58,21 +58,14 @@ Sigh. Moving on then.
 
 ## Training Methodology
 
-The next thing to do was  to NOT use in training our classifier, but instead use to test our classifier after it's been trained. This is common practice, because we want to see how well our classifier captures the underlying behavior of irises at large, not the idosyncracies of data we trained on. If we trained and tested on the same data, there would be no way to tell if our accuracy is derived from the idosyncracies or correct underlying behavior. The `train_test_split` function gives us a super easy way to randomly split up our data into a training set and a test set using any proportion we want.
+As is tradition, I wanted to train my classifier on one portion of the data and test its performance on another. This is because I wanted to see how well my classifier captures the underlying behavior of irises at large, not the idosyncracies of data I trained with. If I trained and tested on the same data, there would be no way to tell if my classifier was *overfitted*, i.e., capturing a lot of idosyncracies and obscuring the correct underlying behavior. The `train_test_split` function was a super easy way to randomly split up the data into a training set and a test set using any proportion I wanted. In this case, I saved 30% of the data for testing.
 
 ```python
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
 ```
 
-In this case, we save 30% of our data for testing.
-
-The plan was to train a classifier so that it can predict the species of a flower given its features.
-
-
-Since the hard work of implementing logistic regression had been done for us, all we have to worry about is what comes before and after. We start with what comes before, which is prepping our data.
-
-We want to pick a good regularization strength. Andrew taught us that the way to do this is to run our classifier with a variety of strengths and then check which one is the best. But again, we can't check the performance of a particular strength by using the same data we trained with. The way this was dealt with in the course was by making a cross-validation set, to be used only for comparing different regularization strengths. The obvious drawback of splitting up the data into three parts (training, cross-validation, testing) is that you have even less data to train with. A better way is to use scikit-learn's `cross_val_score`, which does a fancy thing called [k-fold validation](https://scikit-learn.org/stable/modules/cross_validation.html).
+Keen to try out more techniques from Andrew's course, I wanted to run the classifier with a bunch of different `C` values and see which one is the best. But again, I couldn't check the performance of a `C` value by testing on the same data I trained with. The way this was dealt with in the course was by making a *cross-validation set*, to be used only for comparing different regularization strengths. I found a better way in scikit-learn's `cross_val_score`, which does a fancy thing called [*k-fold validation*](https://scikit-learn.org/stable/modules/cross_validation.html).
 
 ```python
 from sklearn.model_selection import cross_val_score
