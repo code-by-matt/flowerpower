@@ -73,7 +73,7 @@ scores = cross_val_score(classifier, X_train, y_train, cv=5)
 interval = "%0.3f (+/- %0.3f)" % (scores.mean(), scores.std() * 2)
 ```
 
-By setting `cv=5`, we tell the computer to train our classifier five times on five different training/cross-validation splits, or "folds". The accuracy acheived on each fold is recorded in `scores` as floats between 0 and 1, with 1 meaning 100% accurate. (The way the folds are determined and the exact meaning of "accurate" depend on a variety of factors; see the above link.) From `scores` we can easily construct a 95% confidence interval for accuracy.
+By setting `cv=5`, I told scikit-learn to train the classifier five times on five different training/cross-validation splits, or "folds". The accuracy acheived on each fold was recorded in `scores` as floats between 0 and 1, with 1 meaning 100% accurate. (The way the folds are determined and the exact meaning of "accurate" depend on a variety of factors; see the above link.) From `scores` I then constructed a 95% confidence interval for accuracy.
 
 ## Training Time!
 
