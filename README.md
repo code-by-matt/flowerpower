@@ -23,7 +23,7 @@ It became clear that I didn't need to reinvent the wheel–I simply needed to ch
 
 ## Reading in the Data
 
-Before the wheel shopping could begin, however, I needed to gather my data and make it compatible with scikit-learn. I started with the `iris.data` file from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/index.php). The file contained 150 rows of data, where each row consisted of four flower features (sepal length, sepal width,petal length, petal width) and a class (one of three iris species).
+Before the wheel shopping could begin, however, I needed to gather my data and make it compatible with scikit-learn. I started with the `iris.data` file from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/index.php). The file contained 150 rows of data, where each row consisted of four flower features (sepal length, sepal width, petal length, petal width) and a class (one of three iris species).
 
 ```
 5.1,3.5,1.4,0.2,Iris-setosa
