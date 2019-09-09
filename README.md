@@ -75,9 +75,9 @@ interval = "%0.3f (+/- %0.3f)" % (scores.mean(), scores.std() * 2)
 
 By setting `cv=5`, I told scikit-learn to train the classifier five times on five different training/cross-validation splits, or "folds". The accuracy acheived on each fold was recorded in `scores` as floats between 0 and 1, with 1 meaning 100% accurate. (The way the folds are determined and the exact meaning of "accurate" depend on a variety of factors; see the above link.) From `scores` I then constructed a 95% confidence interval for accuracy.
 
-## Training Time!
+## Training and Results Analysis
 
-I made the `flowerpower.py` script to bring together everything that I've talked about.
+Once I found the pieces I needed for my plan, it was pretty quick to throw them together into a script called `flowerpower.py`. The first part of the script takes any number of `C` values as command-line arguments and computes their cross-validation scores on the training set. The second part calculates a final score on the testing set using a `C` value that you choose. Here's one example output.
 
 ```
 $ python flowerpower.py 0.01 100 1000000
@@ -91,11 +91,7 @@ Enter a row number: 2
 Final Score: 0.978
 ```
 
-It takes any number of `C` values as command-line arguments and computes their cross-validation scores. Then it calculates a final score using a `C` value that you choose, in this case the second one we input, or `C=100`.
-
-## What Does It Mean??
-
-The above results tell us that our classifier performs really well, so long as `C` isn't too small. This means that our data fits a simple pattern really well and is not very susceptible to overfitting. The script then
+These results mean that the classifier performs really well, so long as `C` isn't too small. This means that our data fits a simple pattern really well and is not very susceptible to overfitting. The script then
 
 ---
 
