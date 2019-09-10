@@ -91,7 +91,11 @@ Enter a row number: 2
 Final Score: 0.978
 ```
 
-These results mean that the classifier performs really well, so long as `C` isn't too small. This means that our data fits a simple pattern really well and is not very susceptible to overfitting. The script then
+At `C=0.01`, regularization is too strong and causes underfitting. With higher `C` values, the classifier performs really well, and I never observed a significant drop in performance by increasing `C`. This means that our data conforms to a simple pattern and is not very susceptible to overfitting, which was kind of a bummer because 
+
+## Conclusion
+
+Uh. Some quote about engineers vs scientists. Mention the things that I didn't even use. "Magic?" 
 
 ---
 
