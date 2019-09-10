@@ -97,7 +97,7 @@ At `C=0.01`, regularization was too strong and caused underfitting. With higher 
 
 Freeman Dyson said, "A good scientist is a person with original ideas. A good engineer is a person who makes a design that works with as few original ideas as possible." I approached this project trying to be a good scientist, but found out that I really needed to be a good engineer. I spent more time reading the docs, choosing tools to use, and writing up this report than on actually coding. And even though I didn't learn any new machine learning theory, there's something satisfying solving a problem simply and clearly, in as few steps as possible.<sup>[4]</sup>
 
-I'm by no means a master of scikit-learn now. There's so much more out there to know, and there are probably better ways to do what I did. Nevertheless, I hope that my experience inspires you to go out and build that thing you've always wanted to build. Chances are, somebody's already made some reeally nice wheels for you :)
+I'm by no means a master of scikit-learn now. There's so much more out there to know, and there are probably better ways to do what I did. Nevertheless, I hope that my experience inspires you to go out and build that thing you've always wanted to build. Chances are, somebody's already made some really nice wheels for you :)
 
 ---
 
