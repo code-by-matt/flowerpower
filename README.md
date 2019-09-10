@@ -91,11 +91,13 @@ Enter a row number: 2
 Final Score: 0.978
 ```
 
-At `C=0.01`, regularization is too strong and causes underfitting. With higher `C` values, the classifier performs really well, and I never observed a significant drop in performance by increasing `C`. This means that our data conforms to a simple pattern and is not very susceptible to overfitting, which was kind of a bummer because 
+At `C=0.01`, regularization was too strong and caused underfitting. With higher `C` values, the classifier performed really well, and I never observed a significant drop in performance by increasing `C`. This means that the data conforms to a simple pattern and is not very susceptible to overfitting, which was kind of a bummer because I might as well have not used regularization at all.
 
 ## Conclusion
 
-Uh. Some quote about engineers vs scientists. Mention the things that I didn't even use. "Magic?" 
+Freeman Dyson said, "A good scientist is a person with original ideas. A good engineer is a person who makes a design that works with as few original ideas as possible." I approached this project trying to be a good scientist, but found out that I really needed to be a good engineer. I spent more time reading the docs, choosing tools to use, and writing up this report than on actually coding. And even though I didn't learn any new machine learning theory, there's something satisfying solving a problem simply and clearly, in as few steps as possible.<sup>[4]</sup>
+
+I'm by no means a master of scikit-learn now. There's so much more out there to know, and there are probably better ways to do what I did. Nevertheless, I hope that my experience inspires you to go out and build that thing you've always wanted to build. Chances are, somebody's already made some reeally nice wheels for you :)
 
 ---
 
@@ -104,3 +106,5 @@ Uh. Some quote about engineers vs scientists. Mention the things that I didn't e
 2. L2 regularization is what I saw in Andrew's course, so I chose it out of familiarity. The precise difference in behavior between L1 regularization and L2 regularization remains a mystery to me.
 
 3. Why inverse? Nobody knows.
+
+4. I guess that's why some people like golf.
